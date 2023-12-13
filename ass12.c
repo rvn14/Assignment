@@ -3,13 +3,12 @@
 #include <string.h>
 #include <math.h>
 
-void runVender()
+void runVender(int coinCount[] , int stampCount[])
 {
     int stampValue, tenderedAmount, change;
     int coins[] = {50, 25, 10, 5};
     int stamps[] = {25, 15, 10};
-    int coinCount[] = {5, 5, 5, 5};
-    int stampCount[] = {5, 5, 5};
+    
     int chngCoins[] = {0, 0, 0, 0};
 
     for (int i = 0; i < 3; i++)
@@ -87,6 +86,12 @@ void runVender()
     }
 
     change = (tenderedAmount - stampValue);
+    if (change < 0)
+    {
+        printf("Insufficient coin value");
+        return;
+    }
+    
 
     if (stampValue == 0)
     {
@@ -185,17 +190,14 @@ int main()
 {
     
     char userInp;
-
-
-
-    
-
+    int coinCount[] = {5, 5, 5, 5};
+    int stampCount[] = {5, 5, 5};
 
     while (1)
     {
         
         
-        runVender();
+        runVender(coinCount, stampCount);
 
         printf("\nDo you want to perform another transaction? (y/n): ");
         scanf(" %c", &userInp);
